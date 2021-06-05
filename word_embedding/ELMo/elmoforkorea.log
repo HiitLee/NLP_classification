@@ -1,0 +1,349 @@
+training instance: 829, training tokens: 15755.
+Truncated word count: 9764.
+Original vocabulary size: 9491.
+Word embedding size: 805
+Char embedding size: 1086
+26 batches, avg len: 20.0
+Evaluate every 26 batches.
+vocab size: 805
+training instance: 829, training tokens: 15755.
+Truncated word count: 9764.
+Original vocabulary size: 9491.
+Word embedding size: 805
+Char embedding size: 1086
+26 batches, avg len: 20.0
+Evaluate every 26 batches.
+vocab size: 805
+Model(
+  (token_embedder): ConvTokenEmbedder(
+    (word_emb_layer): EmbeddingLayer(
+      (embedding): Embedding(805, 100, padding_idx=3)
+    )
+    (char_emb_layer): EmbeddingLayer(
+      (embedding): Embedding(1086, 50, padding_idx=1083)
+    )
+    (convolutions): ModuleList(
+      (0): Conv1d(50, 32, kernel_size=(1,), stride=(1,))
+      (1): Conv1d(50, 32, kernel_size=(2,), stride=(1,))
+      (2): Conv1d(50, 64, kernel_size=(3,), stride=(1,))
+      (3): Conv1d(50, 128, kernel_size=(4,), stride=(1,))
+      (4): Conv1d(50, 256, kernel_size=(5,), stride=(1,))
+      (5): Conv1d(50, 512, kernel_size=(6,), stride=(1,))
+      (6): Conv1d(50, 1024, kernel_size=(7,), stride=(1,))
+    )
+    (highways): Highway(
+      (_layers): ModuleList(
+        (0): Linear(in_features=2048, out_features=4096, bias=True)
+        (1): Linear(in_features=2048, out_features=4096, bias=True)
+      )
+    )
+    (projection): Linear(in_features=2148, out_features=512, bias=True)
+  )
+  (encoder): ElmobiLm(
+    (forward_layer_0): LstmCellWithProjection(
+      (input_linearity): Linear(in_features=512, out_features=16384, bias=False)
+      (state_linearity): Linear(in_features=512, out_features=16384, bias=True)
+      (state_projection): Linear(in_features=4096, out_features=512, bias=False)
+    )
+    (backward_layer_0): LstmCellWithProjection(
+      (input_linearity): Linear(in_features=512, out_features=16384, bias=False)
+      (state_linearity): Linear(in_features=512, out_features=16384, bias=True)
+      (state_projection): Linear(in_features=4096, out_features=512, bias=False)
+    )
+    (forward_layer_1): LstmCellWithProjection(
+      (input_linearity): Linear(in_features=512, out_features=16384, bias=False)
+      (state_linearity): Linear(in_features=512, out_features=16384, bias=True)
+      (state_projection): Linear(in_features=4096, out_features=512, bias=False)
+    )
+    (backward_layer_1): LstmCellWithProjection(
+      (input_linearity): Linear(in_features=512, out_features=16384, bias=False)
+      (state_linearity): Linear(in_features=512, out_features=16384, bias=True)
+      (state_projection): Linear(in_features=4096, out_features=512, bias=False)
+    )
+  )
+  (classify_layer): SampledSoftmaxLayer(
+    (criterion): CrossEntropyLoss()
+    (column_emb): Embedding(805, 512)
+    (column_bias): Embedding(805, 1)
+  )
+)
+Epoch=0 iter=26 lr=0.001000 train_ppl=106.831238
+New record achieved on training dataset!
+Epoch=1 iter=26 lr=0.000800 train_ppl=12.121139
+New record achieved on training dataset!
+training instance: 829, training tokens: 15755.
+Truncated word count: 9764.
+Original vocabulary size: 9491.
+Word embedding size: 805
+Char embedding size: 1086
+26 batches, avg len: 20.0
+Evaluate every 26 batches.
+vocab size: 805
+Model(
+  (token_embedder): ConvTokenEmbedder(
+    (word_emb_layer): EmbeddingLayer(
+      (embedding): Embedding(805, 100, padding_idx=3)
+    )
+    (char_emb_layer): EmbeddingLayer(
+      (embedding): Embedding(1086, 50, padding_idx=1083)
+    )
+    (convolutions): ModuleList(
+      (0): Conv1d(50, 32, kernel_size=(1,), stride=(1,))
+      (1): Conv1d(50, 32, kernel_size=(2,), stride=(1,))
+      (2): Conv1d(50, 64, kernel_size=(3,), stride=(1,))
+      (3): Conv1d(50, 128, kernel_size=(4,), stride=(1,))
+      (4): Conv1d(50, 256, kernel_size=(5,), stride=(1,))
+      (5): Conv1d(50, 512, kernel_size=(6,), stride=(1,))
+      (6): Conv1d(50, 1024, kernel_size=(7,), stride=(1,))
+    )
+    (highways): Highway(
+      (_layers): ModuleList(
+        (0): Linear(in_features=2048, out_features=4096, bias=True)
+        (1): Linear(in_features=2048, out_features=4096, bias=True)
+      )
+    )
+    (projection): Linear(in_features=2148, out_features=512, bias=True)
+  )
+  (encoder): ElmobiLm(
+    (forward_layer_0): LstmCellWithProjection(
+      (input_linearity): Linear(in_features=512, out_features=16384, bias=False)
+      (state_linearity): Linear(in_features=512, out_features=16384, bias=True)
+      (state_projection): Linear(in_features=4096, out_features=512, bias=False)
+    )
+    (backward_layer_0): LstmCellWithProjection(
+      (input_linearity): Linear(in_features=512, out_features=16384, bias=False)
+      (state_linearity): Linear(in_features=512, out_features=16384, bias=True)
+      (state_projection): Linear(in_features=4096, out_features=512, bias=False)
+    )
+    (forward_layer_1): LstmCellWithProjection(
+      (input_linearity): Linear(in_features=512, out_features=16384, bias=False)
+      (state_linearity): Linear(in_features=512, out_features=16384, bias=True)
+      (state_projection): Linear(in_features=4096, out_features=512, bias=False)
+    )
+    (backward_layer_1): LstmCellWithProjection(
+      (input_linearity): Linear(in_features=512, out_features=16384, bias=False)
+      (state_linearity): Linear(in_features=512, out_features=16384, bias=True)
+      (state_projection): Linear(in_features=4096, out_features=512, bias=False)
+    )
+  )
+  (classify_layer): SampledSoftmaxLayer(
+    (criterion): CrossEntropyLoss()
+    (column_emb): Embedding(805, 512)
+    (column_bias): Embedding(805, 1)
+  )
+)
+Epoch=0 iter=26 lr=0.001000 train_ppl=106.831238
+New record achieved on training dataset!
+Epoch=1 iter=26 lr=0.000800 train_ppl=12.121332
+New record achieved on training dataset!
+Epoch=2 iter=26 lr=0.000640 train_ppl=10.126809
+New record achieved on training dataset!
+training instance: 829, training tokens: 15755.
+Truncated word count: 9764.
+Original vocabulary size: 9491.
+Word embedding size: 805
+Char embedding size: 1086
+26 batches, avg len: 20.0
+Evaluate every 26 batches.
+vocab size: 805
+Model(
+  (token_embedder): ConvTokenEmbedder(
+    (word_emb_layer): EmbeddingLayer(
+      (embedding): Embedding(805, 100, padding_idx=3)
+    )
+    (char_emb_layer): EmbeddingLayer(
+      (embedding): Embedding(1086, 50, padding_idx=1083)
+    )
+    (convolutions): ModuleList(
+      (0): Conv1d(50, 32, kernel_size=(1,), stride=(1,))
+      (1): Conv1d(50, 32, kernel_size=(2,), stride=(1,))
+      (2): Conv1d(50, 64, kernel_size=(3,), stride=(1,))
+      (3): Conv1d(50, 128, kernel_size=(4,), stride=(1,))
+      (4): Conv1d(50, 256, kernel_size=(5,), stride=(1,))
+      (5): Conv1d(50, 512, kernel_size=(6,), stride=(1,))
+      (6): Conv1d(50, 1024, kernel_size=(7,), stride=(1,))
+    )
+    (highways): Highway(
+      (_layers): ModuleList(
+        (0): Linear(in_features=2048, out_features=4096, bias=True)
+        (1): Linear(in_features=2048, out_features=4096, bias=True)
+      )
+    )
+    (projection): Linear(in_features=2148, out_features=512, bias=True)
+  )
+  (encoder): ElmobiLm(
+    (forward_layer_0): LstmCellWithProjection(
+      (input_linearity): Linear(in_features=512, out_features=16384, bias=False)
+      (state_linearity): Linear(in_features=512, out_features=16384, bias=True)
+      (state_projection): Linear(in_features=4096, out_features=512, bias=False)
+    )
+    (backward_layer_0): LstmCellWithProjection(
+      (input_linearity): Linear(in_features=512, out_features=16384, bias=False)
+      (state_linearity): Linear(in_features=512, out_features=16384, bias=True)
+      (state_projection): Linear(in_features=4096, out_features=512, bias=False)
+    )
+    (forward_layer_1): LstmCellWithProjection(
+      (input_linearity): Linear(in_features=512, out_features=16384, bias=False)
+      (state_linearity): Linear(in_features=512, out_features=16384, bias=True)
+      (state_projection): Linear(in_features=4096, out_features=512, bias=False)
+    )
+    (backward_layer_1): LstmCellWithProjection(
+      (input_linearity): Linear(in_features=512, out_features=16384, bias=False)
+      (state_linearity): Linear(in_features=512, out_features=16384, bias=True)
+      (state_projection): Linear(in_features=4096, out_features=512, bias=False)
+    )
+  )
+  (classify_layer): SampledSoftmaxLayer(
+    (criterion): CrossEntropyLoss()
+    (column_emb): Embedding(805, 512)
+    (column_bias): Embedding(805, 1)
+  )
+)
+Epoch=0 iter=26 lr=0.001000 train_ppl=106.831284
+New record achieved on training dataset!
+Epoch=1 iter=26 lr=0.000800 train_ppl=12.121128
+New record achieved on training dataset!
+training instance: 829, training tokens: 15755.
+Truncated word count: 9764.
+Original vocabulary size: 9491.
+Word embedding size: 805
+Char embedding size: 1086
+26 batches, avg len: 20.0
+Evaluate every 26 batches.
+vocab size: 805
+Model(
+  (token_embedder): ConvTokenEmbedder(
+    (word_emb_layer): EmbeddingLayer(
+      (embedding): Embedding(805, 100, padding_idx=3)
+    )
+    (char_emb_layer): EmbeddingLayer(
+      (embedding): Embedding(1086, 50, padding_idx=1083)
+    )
+    (convolutions): ModuleList(
+      (0): Conv1d(50, 32, kernel_size=(1,), stride=(1,))
+      (1): Conv1d(50, 32, kernel_size=(2,), stride=(1,))
+      (2): Conv1d(50, 64, kernel_size=(3,), stride=(1,))
+      (3): Conv1d(50, 128, kernel_size=(4,), stride=(1,))
+      (4): Conv1d(50, 256, kernel_size=(5,), stride=(1,))
+      (5): Conv1d(50, 512, kernel_size=(6,), stride=(1,))
+      (6): Conv1d(50, 1024, kernel_size=(7,), stride=(1,))
+    )
+    (highways): Highway(
+      (_layers): ModuleList(
+        (0): Linear(in_features=2048, out_features=4096, bias=True)
+        (1): Linear(in_features=2048, out_features=4096, bias=True)
+      )
+    )
+    (projection): Linear(in_features=2148, out_features=512, bias=True)
+  )
+  (encoder): ElmobiLm(
+    (forward_layer_0): LstmCellWithProjection(
+      (input_linearity): Linear(in_features=512, out_features=16384, bias=False)
+      (state_linearity): Linear(in_features=512, out_features=16384, bias=True)
+      (state_projection): Linear(in_features=4096, out_features=512, bias=False)
+    )
+    (backward_layer_0): LstmCellWithProjection(
+      (input_linearity): Linear(in_features=512, out_features=16384, bias=False)
+      (state_linearity): Linear(in_features=512, out_features=16384, bias=True)
+      (state_projection): Linear(in_features=4096, out_features=512, bias=False)
+    )
+    (forward_layer_1): LstmCellWithProjection(
+      (input_linearity): Linear(in_features=512, out_features=16384, bias=False)
+      (state_linearity): Linear(in_features=512, out_features=16384, bias=True)
+      (state_projection): Linear(in_features=4096, out_features=512, bias=False)
+    )
+    (backward_layer_1): LstmCellWithProjection(
+      (input_linearity): Linear(in_features=512, out_features=16384, bias=False)
+      (state_linearity): Linear(in_features=512, out_features=16384, bias=True)
+      (state_projection): Linear(in_features=4096, out_features=512, bias=False)
+    )
+  )
+  (classify_layer): SampledSoftmaxLayer(
+    (criterion): CrossEntropyLoss()
+    (column_emb): Embedding(805, 512)
+    (column_bias): Embedding(805, 1)
+  )
+)
+Epoch=0 iter=26 lr=0.001000 train_ppl=106.831284
+New record achieved on training dataset!
+best train ppl: 106.831284.
+training instance: 829, training tokens: 15755.
+Truncated word count: 9764.
+Original vocabulary size: 9491.
+Word embedding size: 805
+Char embedding size: 1086
+26 batches, avg len: 20.0
+Evaluate every 26 batches.
+vocab size: 805
+training instance: 829, training tokens: 15755.
+Truncated word count: 9764.
+Original vocabulary size: 9491.
+Word embedding size: 805
+Char embedding size: 1086
+26 batches, avg len: 20.0
+Evaluate every 26 batches.
+vocab size: 805
+training instance: 829, training tokens: 15755.
+Truncated word count: 9764.
+Original vocabulary size: 9491.
+Word embedding size: 805
+Char embedding size: 1086
+26 batches, avg len: 20.0
+Evaluate every 26 batches.
+vocab size: 805
+Model(
+  (token_embedder): ConvTokenEmbedder(
+    (word_emb_layer): EmbeddingLayer(
+      (embedding): Embedding(805, 100, padding_idx=3)
+    )
+    (char_emb_layer): EmbeddingLayer(
+      (embedding): Embedding(1086, 50, padding_idx=1083)
+    )
+    (convolutions): ModuleList(
+      (0): Conv1d(50, 32, kernel_size=(1,), stride=(1,))
+      (1): Conv1d(50, 32, kernel_size=(2,), stride=(1,))
+      (2): Conv1d(50, 64, kernel_size=(3,), stride=(1,))
+      (3): Conv1d(50, 128, kernel_size=(4,), stride=(1,))
+      (4): Conv1d(50, 256, kernel_size=(5,), stride=(1,))
+      (5): Conv1d(50, 512, kernel_size=(6,), stride=(1,))
+      (6): Conv1d(50, 1024, kernel_size=(7,), stride=(1,))
+    )
+    (highways): Highway(
+      (_layers): ModuleList(
+        (0): Linear(in_features=2048, out_features=4096, bias=True)
+        (1): Linear(in_features=2048, out_features=4096, bias=True)
+      )
+    )
+    (projection): Linear(in_features=2148, out_features=512, bias=True)
+  )
+  (encoder): ElmobiLm(
+    (forward_layer_0): LstmCellWithProjection(
+      (input_linearity): Linear(in_features=512, out_features=16384, bias=False)
+      (state_linearity): Linear(in_features=512, out_features=16384, bias=True)
+      (state_projection): Linear(in_features=4096, out_features=512, bias=False)
+    )
+    (backward_layer_0): LstmCellWithProjection(
+      (input_linearity): Linear(in_features=512, out_features=16384, bias=False)
+      (state_linearity): Linear(in_features=512, out_features=16384, bias=True)
+      (state_projection): Linear(in_features=4096, out_features=512, bias=False)
+    )
+    (forward_layer_1): LstmCellWithProjection(
+      (input_linearity): Linear(in_features=512, out_features=16384, bias=False)
+      (state_linearity): Linear(in_features=512, out_features=16384, bias=True)
+      (state_projection): Linear(in_features=4096, out_features=512, bias=False)
+    )
+    (backward_layer_1): LstmCellWithProjection(
+      (input_linearity): Linear(in_features=512, out_features=16384, bias=False)
+      (state_linearity): Linear(in_features=512, out_features=16384, bias=True)
+      (state_projection): Linear(in_features=4096, out_features=512, bias=False)
+    )
+  )
+  (classify_layer): SampledSoftmaxLayer(
+    (criterion): CrossEntropyLoss()
+    (column_emb): Embedding(805, 512)
+    (column_bias): Embedding(805, 1)
+  )
+)
+Epoch=0 iter=26 lr=0.001000 train_ppl=106.831238
+New record achieved on training dataset!
+best train ppl: 106.831238.
