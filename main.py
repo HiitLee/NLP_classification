@@ -20,7 +20,7 @@ import sys
 import datetime
 import torch.nn.functional as F
 import torch.nn as nn
-from Config import config
+from config import config
 args = config.parser.parse_args()
 
 
@@ -128,19 +128,10 @@ def tokenizer(inputText):
 
 
 
-def main(task='HCL', 
-        batch = 64, 
-        data_train_file='./nsmc/ratings_train.tsv',
-        data_test_file='./nsmc/ratings_test.tsv'):
+def main():
 
-    print(task)
-    print(data_train_file)
-    print(data_test_file)
     print("Reading Train set.....")
-    print(task)
-    print(data_train_file)
-    print(data_test_file)
-    fr = open(data_train_file, 'r', encoding='utf-8')
+    fr = open(args.data_train_file, 'r', encoding='utf-8')
     lines = csv.reader(fr,  delimiter='\t')
     X_train=[]
     y_train=[]
@@ -150,6 +141,9 @@ def main(task='HCL',
     meanLine2 = []
     meanLineTrain=[]
     meanLineTest=[]
+    print('args_model:', args.model)
+    print('args_token#;', args.tokenizer)
+    print('lr #:', args.lr)
     for line in lines:
         if('label' in line[0]):
             continue
@@ -175,7 +169,7 @@ def main(task='HCL',
 
     print("Reading Test set......")
 
-    fr = open(data_test_file, 'r', encoding='utf-8')
+    fr = open(args.data_test_file, 'r', encoding='utf-8')
     lines = csv.reader(fr,  delimiter='\t')
     X_test=[]
     X_test1=[]
@@ -281,6 +275,7 @@ def main(task='HCL',
     print("length of testset: ", len(X_test))
 
 
+    print("args.sampling##:", args.sampling)
     if(args.sampling == True):
         print("data sampling ............")
         skf = StratifiedKFold(n_splits=10)
@@ -376,4 +371,4 @@ def main(task='HCL',
         trainer.eval()
 
 if __name__ == '__main__':
-    fire.Fire(main)
+    fire.Fire(main())

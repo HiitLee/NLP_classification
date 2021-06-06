@@ -1,16 +1,14 @@
-
 #! /bin/sh
 
-
-python main.py \
-	--model LSTM \
-	--mode train \
+python main.py --lr  1e-4 \
+	--epochs 1 \
 	--batch 256 \
-	--vocab 500000 \
-	--maxSen 5 \
+	--maxSen 100 \
+	--model CNN \
+	--mode train \
 	--sampling True \
-	--tokenizer word \
-	--lr 1e-3 \
+	--tokenizer char \
 	--data_train_file ./nsmc/ratings_train.tsv \
-	--data_test_file ./nsmc/ratings_test.tsv 
+	--data_test_file ./nsmc/ratings_test.tsv \
+	--vocab 500000 
 

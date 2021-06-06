@@ -13,7 +13,7 @@ class Trainer(object):
 
     def train_epoch(self):
         maxScore = 0
-        for e in range(0, 5):
+        for e in range(0, self.args.epochs):
             iter_bar = tqdm(self.train_iter, desc='Iter (loss=X.XXX)')
             loss_sum=0
             for tt, samples  in enumerate(iter_bar):
