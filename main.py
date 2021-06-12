@@ -131,8 +131,6 @@ def tokenizer(inputText):
 def main():
 
     print("Reading Train set.....")
-    fr = open(args.data_train_file, 'r', encoding='utf-8')
-    lines = csv.reader(fr,  delimiter='\t')
     X_train=[]
     y_train=[]
     X_train1=[]
@@ -144,79 +142,66 @@ def main():
     print('args_model:', args.model)
     print('args_token#;', args.tokenizer)
     print('lr #:', args.lr)
-    for line in lines:
-        if('label' in line[0]):
-            continue
-        if('HCL' in args.model):
-            w2i = list(tokenizer_HCL(line[1]))
-            for subsentence in w2i:
-                meanSen.append(len(subsentence))
-           # if('LSTM' in args.model):
-            w2i2 = list(tokenizer(line[1]))
-            meanLine2.append(len(w2i2))
-            X_train1.append(w2i2)
-        else:
-            w2i = list(tokenizer(line[1]))
+    aa=0
+    with open(args.data_train_file, 'r', encoding='utf-8') as f:
+        for line in f.readlines():
+            line = line.split('\t')
+            if('label' in line[0]):
+                continue
+            if('HCL' in args.model):
+                w2i = list(tokenizer_HCL(line[1]))
+                for subsentence in w2i:
+                    meanSen.append(len(subsentence))
+               # if('LSTM' in args.model):
+                w2i2 = list(tokenizer(line[1]))
+                meanLine2.append(len(w2i2))
+                X_train1.append(w2i2)
+            else:
+                w2i = list(tokenizer(line[1]))
 
-        meanLine.append(len(w2i))
-        if(len(w2i)<=0):
-            meanLineTrain.append([2])
-        else:
-            meanLineTrain.append([len(w2i)])
-        X_train.append(w2i)
-        y_train.append([int(line[0])])
-    fr.close()
+            meanLine.append(len(w2i))
+            if(len(w2i)<=0):
+                meanLineTrain.append([2])
+            else:
+                meanLineTrain.append([len(w2i)])
+            X_train.append(w2i)
+            y_train.append([int(line[0])])
 
     print("Reading Test set......")
 
-    fr = open(args.data_test_file, 'r', encoding='utf-8')
-    lines = csv.reader(fr,  delimiter='\t')
     X_test=[]
     X_test1=[]
     y_test=[]
 
-    for line in lines:
-        if('label' in line[0]):
-            continue
-        if('HCL' in args.model):
-            w2i = list(tokenizer_HCL(line[1]))
-            for subsentence in w2i:
-                meanSen.append(len(subsentence))
-            #if('LSTM' in args.model):
-            w2i2 = list(tokenizer(line[1]))
-            meanLine2.append(len(w2i2))
-            X_test1.append(w2i2)
-        else:
-            w2i = list(tokenizer(line[1]))
-        meanLine.append(len(w2i))
-        if(len(w2i)<=0):
-            meanLineTest.append([2])
-        else:
-            meanLineTest.append([len(w2i)])
-        X_test.append(w2i)
-        y_test.append([int(line[0])])
-    fr.close()
+    with open(args.data_test_file, 'r', encoding='utf-8') as f:
+        for line in f.readlines():
+            line = line.split('\t')
+            if('label' in line[0]):
+                continue
+            if('HCL' in args.model):
+                w2i = list(tokenizer_HCL(line[1]))
+                for subsentence in w2i:
+                    meanSen.append(len(subsentence))
+                #if('LSTM' in args.model):
+                w2i2 = list(tokenizer(line[1]))
+                meanLine2.append(len(w2i2))
+                X_test1.append(w2i2)
+            else:
+                w2i = list(tokenizer(line[1]))
+            meanLine.append(len(w2i))
+            if(len(w2i)<=0):
+                meanLineTest.append([2])
+            else:
+                meanLineTest.append([len(w2i)])
+            X_test.append(w2i)
+            y_test.append([int(line[0])])
 
     if('HCL' in args.model):
         maxLen = int(np.max(meanSen))
         maxSen1 = int(np.max(meanLine2))
         print('maxLen:', maxLen)
     maxSen = int(np.max(meanLine))
-#    if(args.maxSen != 0):
-#        maxSen = int(args.maxSen)
-#        for i in range(0, len(X_train)):
-#            #print(X_train[i])
-#            #print(X_train1[i])
-#            if(maxSen <= len(X_train[i])):
-#                X_train[i] = X_train[i][:maxSen]
-#                if('LSTM' in args.model):
-#                    X_train1[i] = X_train1[i][:maxSen]
-#        for i in range(0, len(X_test)):
-#            if(maxSen <= len(X_test[i])):
-#                X_test[i] = X_test[i][:maxSen]
-#                if('LSTM' in args.model):
-#                    X_test1[i] = X_test1[i][:maxSen]
-        
+    
     print('maxSen:', maxSen)
     if('HCL' in args.model):
         for i  in range(0,len(X_train)):
@@ -254,19 +239,6 @@ def main():
 
 
     print("pre-trained embedding loading........")
-
-    k=0
-#    weights = list()
-#    for i in range(0, len(embed_lookup.wv.vocab)):
-#        cc = embed_lookup.wv.index2word[i]
-#        try:
-#            weights.append(np.ndarray.tolist(embed_lookup[cc]))
-#        except KeyError:
-#            weights.append(np.ndarray.tolist(np.random.rand(300,)))
-#        k+=1                                                                   
-#    weights = np.array(weights, dtype=np.float32)
-#    weights = torch.from_numpy(weights)
-#    weights = torch.FloatTensor(weights)
 
     weights = None
     print("pre-trained embedding loading success....")
@@ -324,7 +296,6 @@ def main():
             return x,y,c,z
 
 
-
     if('HCL' in args.model):
         model = HCL_CLSTM_CLSTM(args,weights,args.model)
     elif(args.model == 'CLSTM'):
@@ -361,9 +332,8 @@ def main():
     model.train()
     steps=0
     criterion = nn.CrossEntropyLoss()  
-    print("training..............")
-    print('args.model: ', args.model)
-    print("#############:", args.mode)
+    print('model: ', args.model)
+    print(args.mode,'...........................')
     trainer = Trainer(args, data_iter, data_test_iter, model, optimizer, criterion)
     if(args.mode == 'train'):
         trainer.train_epoch()
